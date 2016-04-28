@@ -1,0 +1,7 @@
+/* Servidor */
+./servidor TCP 7300
+gcc servidor_hilos.c funciones_servidor.c -o servidor  -pthread -std=c99 
+
+/*  Cliente */
+gcc mainclient.c funciones_cliente.c -o cliente
+./cliente 127.0.0.1 7300 TCP

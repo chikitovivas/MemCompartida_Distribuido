@@ -194,7 +194,7 @@ void *connection_handler_UDP(void *socket_desc)
 					 actual = actual->siguiente;	         
 				 }
 
-				 send(sock , actual->buf , 100,0); //Envio de la informacion 
+				 send(sock , actual->buf , 1000,0); //Envio de la informacion 
 			 }else{
 				send(sock , "-1" , sizeof("-1"),0); //Envio de la informacion
 			 }    
@@ -429,7 +429,7 @@ void *connection_handler_TCP(void *socket_desc)
 					 actual = actual->siguiente;	         
 				 }
 
-				 write(sock , actual->buf , 100); //Envio de la informacion 
+				 write(sock , actual->buf , 1000); //Envio de la informacion 
 			 }else{
 				write(sock , "-1" , sizeof("-1")); //Envio de la informacion
 			 }    

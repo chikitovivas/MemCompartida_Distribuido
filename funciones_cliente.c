@@ -121,14 +121,14 @@
 	 *  retorna el mensaje recibido del servidor, de tipo void *
 	 */
 		void* recibir(){
-			void *mensaje = (void*) malloc(100);
+			void *mensaje = (void*) malloc(1000);
 			int numbytes;
 
 			
 			if (tipo_conex==1){ //TCP
 				//puts("entro a recibir");
 				//Recv del servidor
-				if ((numbytes=recv(fd,mensaje,MAXDATASIZE,0)) == -1){  
+				if ((numbytes=recv(fd,mensaje,1000,0)) == -1){  
 					printf("Error en recv() \n");
 					//exit(-1);
 				}
@@ -136,7 +136,7 @@
 			else
 				if (tipo_conex==2){ //UDP
 					//Recv del servido
-					if ((numbytes=read(fd,mensaje,MAXDATASIZE)) == -1){ 
+					if ((numbytes=read(fd,mensaje,1000)) == -1){ 
 						printf("Error en read() \n");
 						//exit(-1);
 					}
@@ -177,7 +177,7 @@
 			//printf("Hola indice: %d", *((int *)indice));
 			//sleep(1);
 			enviar("2",sizeof("2")); //Enviar opcion escogida al servidor en caracter
-			enviar((void *)indice,sizeof(int)*2);
+			enviar((void *)indice,sizeof(int));
 			
 			return recibir();   //retorna el mensaje o -1 si no es un indice valido
 			
@@ -193,7 +193,7 @@
 			printf("entre al update");
 			enviar((void *)indice,sizeof(indice));
 			//sleep(1);
-			enviar(mensaje,tamano*10);
+			enviar(mensaje,tamano);
 			return atoi(recibir());   //retorna 1 si es valido o -1 si no es un indice valido
 		}
 
